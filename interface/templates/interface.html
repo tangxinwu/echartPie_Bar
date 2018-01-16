@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试数据可视化</title>
+    <script src="/static/jquery-3.2.1.min.js"></script>
+    <script src="/static/echarts.min.js"></script>
+</head>
+<body>
+    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        $.post("/get_data/", {"action":"get_data"},function (result) {
+            var option = JSON.parse(result);
+             myChart.setOption(option);
+        })
+
+    </script>
+</body>
+</html>
